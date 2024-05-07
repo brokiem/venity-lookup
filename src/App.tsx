@@ -1,11 +1,11 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { DateTime } from "luxon"
-import { formatRank } from './utils/utils';
 import BedWarsStatsViewer from './components/BedWarsStatsViewer';
 import SkyWarsStatsViewer from './components/SkyWarsStatsViewer';
 import TheBridgeStatsViewer from './components/TheBridgeStatsViewer';
 import DuelsStatsViewer from './components/DuelsStatsViewer';
 import RankViewer from './components/RankViewer';
+import Odometer from 'react-odometerjs';
 
 function App() {
     const [gamertag, setGamertag] = useState("brokiemydog");
@@ -72,17 +72,23 @@ function App() {
                             <div className="mt-4 grid grid-cols-3 gap-4">
                                 <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                                     <p className="font-medium text-center">Level</p>
-                                    <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(player.level)}</p>
+                                    <p className="font-semibold text-2xl text-center">
+                                        <Odometer value={player.level} format="(,ddd)" />
+                                    </p>
                                 </div>
 
                                 <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                                     <p className="font-medium text-center">Experience</p>
-                                    <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(player.experience)}</p>
+                                    <p className="font-semibold text-2xl text-center">
+                                        <Odometer value={player.experience} format="(,ddd)" />
+                                    </p>
                                 </div>
 
                                 <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                                     <p className="font-medium text-center">Coins</p>
-                                    <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(player.coins)}</p>
+                                    <p className="font-semibold text-2xl text-center">
+                                        <Odometer value={player.coins} format="(,ddd)" />
+                                    </p>
                                 </div>
 
                                 <div className="col-span-2 flex flex-col items-center justify-center overflow-hidden bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
@@ -92,7 +98,9 @@ function App() {
 
                                 <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                                     <p className="font-medium text-center">Reputation</p>
-                                    <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(player.reputation)}</p>
+                                    <p className="font-semibold text-2xl text-center">
+                                        <Odometer value={player.reputation} format="(,ddd)" />
+                                    </p>
                                 </div>
                             </div>
                         </div>

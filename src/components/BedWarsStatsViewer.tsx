@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { formatPercentage } from "../utils/utils";
+import Odometer from 'react-odometerjs';
 
 export default function BedWarsStatsViewer({ gamertag, gamemode }: { gamertag: string, gamemode: string }) {
     const [stats, setStats] = useState(null as any);
@@ -19,12 +20,12 @@ export default function BedWarsStatsViewer({ gamertag, gamemode }: { gamertag: s
             {/* Win Rate */}
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                 <p className="font-medium text-center">Wins</p>
-                <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(stats[`${gamemode}_wins`])}</p>
+                <p className="font-semibold text-2xl text-center"><Odometer format="(,ddd)" value={stats[`${gamemode}_wins`]} /></p>
             </div>
 
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                 <p className="font-medium text-center">Losses</p>
-                <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(stats[`${gamemode}_matches`] - stats[`${gamemode}_wins`])}</p>
+                <p className="font-semibold text-2xl text-center"><Odometer format="(,ddd)" value={stats[`${gamemode}_matches`] - stats[`${gamemode}_wins`]} /></p>
             </div>
 
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
@@ -37,12 +38,12 @@ export default function BedWarsStatsViewer({ gamertag, gamemode }: { gamertag: s
             {/* Kills Rate */}
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                 <p className="font-medium text-center">Kills</p>
-                <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(stats[`${gamemode}_kills`])}</p>
+                <p className="font-semibold text-2xl text-center"><Odometer format="(,ddd)" value={stats[`${gamemode}_kills`]} /></p>
             </div>
 
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                 <p className="font-medium text-center">Deaths</p>
-                <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(stats[`${gamemode}_deaths`])}</p>
+                <p className="font-semibold text-2xl text-center"><Odometer format="(,ddd)" value={stats[`${gamemode}_deaths`]} /></p>
             </div>
 
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
@@ -55,12 +56,12 @@ export default function BedWarsStatsViewer({ gamertag, gamemode }: { gamertag: s
             {/* Final Kills Rate */}
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                 <p className="font-medium text-center">Final Kills</p>
-                <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(stats[`${gamemode}_final_kills`])}</p>
+                <p className="font-semibold text-2xl text-center"><Odometer format="(,ddd)" value={stats[`${gamemode}_final_kills`]} /></p>
             </div>
 
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                 <p className="font-medium text-center">Final Deaths</p>
-                <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(stats[`${gamemode}_final_deaths`])}</p>
+                <p className="font-semibold text-2xl text-center"><Odometer format="(,ddd)" value={stats[`${gamemode}_final_deaths`]} /></p>
             </div>
 
             <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
