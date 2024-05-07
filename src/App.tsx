@@ -17,12 +17,6 @@ function App() {
     const fetchPlayer = () => {
         fetch(`https://api.venitymc.com/player/${gamertag}`).then(r => r.json()).then(r => {
             setPlayer(r);
-
-            setMinigame(null);
-            setGamemode(null);
-
-            setMinigame("bedwars");
-            setGamemode("squads");
         });
     }
 
@@ -31,6 +25,11 @@ function App() {
     }, []);
 
     useEffect(() => {
+        if (minigame === "bedwars") {
+            setGamemode("squads");
+            return;
+        }
+
         setGamemode("solo");
     }, [minigame]);
 
@@ -42,7 +41,7 @@ function App() {
     return (
         <>
             <div className="flex justify-center">
-                <div className="my-10 max-w-2xl w-full px-5 lg:mx-0">
+                <div className="my-12 max-w-2xl w-full px-5 lg:mx-0">
                     <form onSubmit={handleSubmit}>
                         <input name="gamertag" onChange={(e) => setGamertag(e.target.value)} className="w-full rounded-lg border border-[#3a3b3c] bg-transparent py-1 px-2 shadow !ring-0 !outline-none" type="text" placeholder="Player gamertag" />
                     </form>
@@ -50,7 +49,7 @@ function App() {
                     <div className="flex flex-col gap-x-8 w-full">
                         <div className="flex-1">
                             <div className="mt-5 bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
-                                <div className="flex">
+                                <div className="flex justify-center">
                                     <div className="flex flex-row items-center">
                                         <div className="p-2 bg-[#242526] rounded-xl">
                                             <div className="rounded-full bg-[#454546] size-10 shrink-0">
@@ -70,7 +69,7 @@ function App() {
                                 </div>
                             </div>
 
-                            {/* <div className="mt-4 grid grid-cols-3 gap-4">
+                            <div className="mt-4 grid grid-cols-3 gap-4">
                                 <div className="flex flex-col items-center justify-center bg-[#303031] py-2.5 px-3 rounded-2xl shadow">
                                     <p className="font-medium text-center">Level</p>
                                     <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(player.level)}</p>
@@ -95,7 +94,7 @@ function App() {
                                     <p className="font-medium text-center">Reputation</p>
                                     <p className="font-semibold text-2xl text-center">{new Intl.NumberFormat("en-US").format(player.reputation)}</p>
                                 </div>
-                            </div> */}
+                            </div>
                         </div>
 
                         <div className="flex-1">
